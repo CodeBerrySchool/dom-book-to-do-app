@@ -1,0 +1,94 @@
+
+.container {
+    min-width: 600px;
+    max-width: 800px;
+    margin: auto;
+    align-content: center;
+    background-color:#333333;
+    padding:20px;
+    padding-bottom: 150px;
+    display: table;
+    border: 5px solid rgb(233, 127, 77);
+}
+
+h1 {
+    text-align: center;
+    color: white;
+    font-size: 40px;
+    letter-spacing: 0.2em;
+    margin-bottom: 3%;
+    margin-top: 3%;
+}
+
+input {
+    width: 65%;
+    padding: 8px;
+    font-size: 16px;
+  }
+
+.newItem {
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 530;
+    color:white;
+    margin-top: 2%;
+    }
+
+#todoForm {
+    text-align: center;
+    display: inline block;
+    margin: auto;
+    padding: 2%;
+}
+
+#add-btn {
+    display: block;
+    text-align: center;
+    margin: auto;
+    width: 45%;
+    margin-top: 2%;
+    border: none;
+    padding: 10px;
+    font-size: 16px;
+    color: rgb(255, 255, 255);
+    font-weight: 530;
+    background-color: rgb(255, 80, 0);
+    cursor: pointer;
+}
+
+.completed {
+    font-style: italic;
+    color: rgb(160, 159, 159);
+    text-decoration: line-through;
+    margin: 2%;
+}
+
+.removeButton {
+    text-align: center;
+    width: 20%;
+    margin:2%;
+    margin-left: 20%;
+    border: none;
+    padding: 6px;
+    font-size: 14px;
+    color: rgb(255, 255, 255);
+    font-weight: 530;
+    background-color: rgb(255, 80, 0);
+}
+
+.completeButton {
+    text-align: center;
+    width: 20%;
+    margin-top: 2%;
+    border: none;
+    padding: 6px;
+    font-size: 14px;
+    color: rgb(255, 255, 255);
+    font-weight: 530;
+    background-color: rgb(255, 80, 0);
+}
+
+.hide {
+    display: none;
+    border-radius: 25px;
+}
