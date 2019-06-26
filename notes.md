@@ -65,3 +65,7 @@
  - It is essential wo understand child-parent relations to create this to-do list
  - We should use other selector types to teach them, not only getElementById().
  - The Remove and Complete buttons are going INSIDE the function which is connected to the Add button - it is not essential, we can move them out.
+
+ # Notes II.
+
+ 

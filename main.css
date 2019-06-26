@@ -56,6 +56,21 @@ input {
     cursor: pointer;
 }
 
+#remove-all-completed-btn {
+    display: block;
+    text-align: center;
+    margin: auto;
+    width: 45%;
+    margin-top: 2%;
+    border: none;
+    padding: 10px;
+    font-size: 16px;
+    color: rgb(255, 255, 255);
+    font-weight: 530;
+    background-color: rgb(255, 80, 0);
+    cursor: pointer;
+} 
+
 .completed {
     font-style: italic;
     color: rgb(160, 159, 159);
