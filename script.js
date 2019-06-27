@@ -1,95 +1,83 @@
 // Create the todoList function - It should run after a click on  the Add button.
 var todoList = {
-	addNewTodo: function() {
+	addTodo: function() {
 	    var item    = document.getElementById('todoInput').value; // Create a text node from the user input
-		var text    = document.createTextNode(item); // Create a li tag
-		var newItem = document.createElement('li');  // Add the user input to the li tag
-		newItem.appendChild(text); 					 //	Append text to newItem
-			if (item === '') {						 // Make sure that empty field is not "submittable"
-				alert("Valamit be kell írnod!");
-	  		} else {
-				document.getElementById('todoList').appendChild(newItem); // Append the li to the html todoList id tag
-				newItem.className = 'newItem'; // Adds a class to the list items
-	}},
+	    var text    = document.createTextNode(item); // Create a li tag
+	    var newItem = document.createElement('li');  // Add the user input to the li tag
+	    newItem.appendChild(text); 					 //	Append text to newItem
+		    if (item === '') {						 // Make sure that empty field is not "submittable"
+			    alert("Valamit be kell írnod!");
+	  	    } else {
+			    document.getElementById('todoList').appendChild(newItem); // Append the li to the html todoList id tag
+                newItem.className = 'newItem'; // Adds a class to the list items
+                document.getElementById('todoInput').value = ''; //Reset empty input field after submit
+             }
+    },
 		  
 	// Create the Remove button
 	addRemoveButton: function() {
-		var removeButton = document.createElement('button'); // Creates the button.
-		removeButton.textContent = 'Törlés'; // Sets its text.
-		removeButton.className = 'removeButton'; // Adds a class to it.
-		var x = document.getElementsByClassName('newItem');
+        var removeButton = document.createElement('button'); // Creates the button.
+	    removeButton.textContent = 'Törlés'; // Sets its text.
+	    removeButton.className = 'removeButton'; // Adds a class to it.
+        var x = document.getElementsByClassName('newItem');
 		var i;
 		for (i = 0; i < x.length; i++) {
-  		x[i].appendChild(removeButton);
-		};
-	},
+          x[i].appendChild(removeButton);
+          
+        };
+        removeButton.onclick = todoList.removeTodo;
 
-	// Create the Complete button
-	addCompleteButton: function() {
-		var completeButton = document.createElement('button'); // Creates the button.
-		completeButton.textContent = 'Kész van!'; // Sets its text.
-		completeButton.className = 'completeButton'; // Adds a class to it.
-		var x = document.getElementsByClassName('newItem');
+        
+	},
+	
+    // Create the Complete button
+    addCompleteButton: function() {
+	var completeButton = document.createElement('button'); // Creates the button.
+	completeButton.textContent = 'Kész van!'; // Sets its text.
+	completeButton.className = 'completeButton'; // Adds a class to it.
+	var x = document.getElementsByClassName('newItem');
 		var i;
 		for (i = 0; i < x.length; i++) {
   		x[i].appendChild(completeButton);
-		};
+        };
+        
+    completeButton.onclick=todoList.completeTodo;
 	},
-};
 
-var handlers = {
-	// Create a remove element function
+	// Remove the element when the Remove button is clicked
 	removeTodo: function() {
-	var x = document.getElementsByClassName('removeButton');
-	var i;
-	for (i = 0; i < close.length; i++) {
-  	x[i].onclick = function() {
-    var div = this.parentElement;
-    div.style.display = "none";
-  }}},
-	
-	// Create a function that adds complete class to list items
+        var newItem = this.parentNode;
+		newItem.remove();
+    },
+    
+    // Add complete class to list items
 	completeTodo: function() {
-		newItem.classList.add('completed')
-	},
-
-	//remove all completed funcionality
-	removeAllCompleted: function() {
-	document.getElementsByClassName('completed');
-	var i;
-	for (i = 0; i < x.length; i++) {
-		x[i].parentNode.removeChild(newItem);
-	  }},
+        var completedTodo = this.parentNode;
+		completedTodo.classList.add('completed')
 	
+    },
+    
+    removeAllComp: function() {
+        
+        var completedItem = document.getElementsByClassName('completed')
+		for (i = 0; i < completedItem.length; i++) {
+		  completedItem[i].style.display='none';
+        };
+    },
+};
+				// the todoList function closing tag is here!
 
-	// Reset input field after submissions
-	resetInput: function() {
-		document.getElementById('todoInput').value = ''; // reset empty input field!
-	},
+// Add the function to the click event
+document.getElementById('add-btn').addEventListener('click', todoList.addTodo);
+document.getElementById('add-btn').addEventListener('click', todoList.addRemoveButton);
+document.getElementById('add-btn').addEventListener('click', todoList.addCompleteButton);
 
-	// Link the Enter key press on the input field to the click event
-	pressEvent: function() {
-		document.getElementById('todoInput').addEventListener('keypress', function(event) {
-    		if (event.keyCode == 13) {
-				event.preventDefault();
-        		document.getElementById('add-btn').click();
-    		}
-	})},
-};		
-
-	//completeButton.addEventListener('click', todoList.completeTodo);
-	//removeButton.addEventListener('click', removeTodo);
-
-
-	document.getElementById('add-btn').addEventListener('click', todoList.addNewTodo);
-
-	document.getElementById('add-btn').addEventListener('click', todoList.addRemoveButton);
-	document.getElementById('add-btn').addEventListener('click', todoList.addCompleteButton);
-	//document.getElementsByClassName('removeButton').addEventListener('click', removeTodo);
-	document.getElementById('add-btn').addEventListener('click', todoList.resetInput);
-	// document.getElementById('add-btn').addEventListener('click', todoList.pressEvent);
+document.getElementById("remove-all-completed-btn").addEventListener('click', todoList.removeAllComp);
 
 
-	
-	
-	
+document.getElementById('todoInput').addEventListener('keypress', function(event) {
+    if (event.keyCode == 13) {
+        event.preventDefault();
+        document.getElementById('add-btn').click();
+    };
+});
