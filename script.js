@@ -22,7 +22,6 @@ var todoList = {
 		for (i = 0; i < x.length; i++) {
   		x[i].appendChild(removeButton);
 		};
-		removeButton.attachEvent(onclick, this.removeTodo)
 	},
 
 	// Create the Complete button
@@ -36,17 +35,32 @@ var todoList = {
   		x[i].appendChild(completeButton);
 		};
 	},
+};
 
+var handlers = {
 	// Create a remove element function
 	removeTodo: function() {
-		  // Connect item removal to Remove button click event
-		newItem.parentNode.removeChild(newItem);		
-	},
+	var x = document.getElementsByClassName('removeButton');
+	var i;
+	for (i = 0; i < close.length; i++) {
+  	x[i].onclick = function() {
+    var div = this.parentElement;
+    div.style.display = "none";
+  }}},
 	
-	// Creat a function that adds complete class to list items
+	// Create a function that adds complete class to list items
 	completeTodo: function() {
 		newItem.classList.add('completed')
 	},
+
+	//remove all completed funcionality
+	removeAllCompleted: function() {
+	document.getElementsByClassName('completed');
+	var i;
+	for (i = 0; i < x.length; i++) {
+		x[i].parentNode.removeChild(newItem);
+	  }},
+	
 
 	// Reset input field after submissions
 	resetInput: function() {
@@ -61,16 +75,20 @@ var todoList = {
         		document.getElementById('add-btn').click();
     		}
 	})},
-};			// the todoList function closing tag is here!
+};		
 
 	//completeButton.addEventListener('click', todoList.completeTodo);
 	//removeButton.addEventListener('click', removeTodo);
 
+
 	document.getElementById('add-btn').addEventListener('click', todoList.addNewTodo);
+
 	document.getElementById('add-btn').addEventListener('click', todoList.addRemoveButton);
 	document.getElementById('add-btn').addEventListener('click', todoList.addCompleteButton);
+	//document.getElementsByClassName('removeButton').addEventListener('click', removeTodo);
 	document.getElementById('add-btn').addEventListener('click', todoList.resetInput);
-	removeButton.addEventListener('click', removeTodo);
+	// document.getElementById('add-btn').addEventListener('click', todoList.pressEvent);
+
 
 	
 	
