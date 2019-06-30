@@ -8,13 +8,19 @@
 </head>
 <body>
     <div class="container">
-        <h1>TO-DO LISTA</h1>
         <form id="todoForm">
-            <input type="text" id="todoInput" placeholder="Ide írhatod a feladatokat">
-            <button type="button" id="add-btn">Hozzáadás</button>
-            <button type="button" id="remove-all-completed-btn">Teljesítettek törlése</button>
-        </form>
-        <ol id="todoList"></ol>
+			<h1 class="title">TO-DO LISTA</h1>
+			<div class=todoInputDiv>
+				<input type="text" id="todoInput"  placeholder="Ide írhatod a feladatokat">
+				<button type="button" id="add-btn">Hozzáadás</button>
+			</div>
+			<div>
+			   <button type="button" id="remove-all-completed-btn">Teljesítettek törlése</button>
+			</div>
+		</form>
+		<div class="myList">
+			<ol id="todoList"></ol>
+		</div>
     </div>
     <script src="script.js"></script>
 </body>

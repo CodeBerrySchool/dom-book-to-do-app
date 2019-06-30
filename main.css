@@ -1,109 +1,172 @@
+/*Reset defaults*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+
+/* Set defaults*/
+
+* {
+    box-sizing: border-box;
+}
 
 .container {
-    min-width: 600px;
-    max-width: 800px;
-    margin: auto;
-    align-content: center;
-    background-color:#333333;
-    padding:20px;
-    padding-bottom: 150px;
-    display: table;
-    border: 5px solid rgb(233, 127, 77);
+    display: grid;
+    width: 100%;
+    height:100%;
+    margin: 0 auto;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 30px 300px auto;
+    padding:30px;
+    align-items: center;
 }
 
-h1 {
-    text-align: center;
-    color: white;
-    font-size: 40px;
-    letter-spacing: 0.2em;
-    margin-bottom: 3%;
-    margin-top: 3%;
-}
-
-input {
-    width: 65%;
-    padding: 8px;
-    font-size: 16px;
-  }
-
-.newItem {
-    font-size: 14px;
-    text-transform: uppercase;
-    font-weight: 530;
-    color:white;
-    margin-top: 2%;
-    }
+/* Place and style the form elements: the input field and the buttons */
 
 #todoForm {
+    grid-row: 2;
+    grid-column: 2;
+    background-color: #E8DDCB;
+    margin-top: 20px;
+}
+
+.title {
     text-align: center;
-    display: inline block;
-    margin: auto;
-    padding: 2%;
+    color: #ffffff;
+    background-color: #033649;
+    font-size: 40px;
+    letter-spacing: 0.1em;
+    width: 100%;
+    padding: 18px;
+}
+
+.todoInputDiv {
+    display:flex;
+    padding: 50px 40px 20px 40px;
+}
+
+#todoInput {
+    display:flex;
+    justify-content: center;
+    text-align: center;
+    padding: 8px;
+    font-size: 16px;
+    width:70%;
 }
 
 #add-btn {
-    display: block;
-    text-align: center;
-    margin: auto;
-    width: 45%;
-    margin-top: 2%;
+    display:flex;
+    justify-content: center;
+    width: 30%;
     border: none;
     padding: 10px;
     font-size: 16px;
-    color: rgb(255, 255, 255);
-    font-weight: 530;
-    background-color: rgb(255, 80, 0);
+    color: #ffffff;
+    background-color: #031634;
     cursor: pointer;
 }
 
+
 #remove-all-completed-btn {
-    display: block;
-    text-align: center;
-    margin: auto;
-    width: 45%;
-    margin-top: 2%;
+    margin:auto;
+    margin-bottom: 40px;
+    margin-top: 20px;
+    display:flex;
+    justify-content: center;
+    width: 80%;
     border: none;
     padding: 10px;
     font-size: 16px;
-    color: rgb(255, 255, 255);
-    font-weight: 530;
-    background-color: rgb(255, 80, 0);
+    color: #ffffff;
+    background-color: rgba(161, 24, 24, 0.897);
     cursor: pointer;
-} 
+}
+
+
+/* Set style properties to the list and the list items */
+
+.myList {
+    grid-row: 3;
+    grid-column: 2;
+}
+
+.newItem {
+    display:flex;
+    position: relative;
+    align-items: center;
+    height: 50px;
+    font-size: 1.4rem;
+    color:rgb(0, 0, 0);
+    background-color: rgb(228, 223, 212);
+    padding-left: 2%;
+}
+
+
+ol li:nth-child(odd) {
+    background-color: rgb(204, 189, 165);
+}
 
 .completed {
     font-style: italic;
-    color: rgb(160, 159, 159);
+    color: rgb(87, 86, 86);
     text-decoration: line-through;
-    margin: 2%;
 }
 
 .removeButton {
-    text-align: center;
-    width: 20%;
-    margin:2%;
-    margin-left: 20%;
-    border: none;
-    padding: 6px;
-    font-size: 14px;
+    position: absolute;
+    top:0;
+    right:0;
+    width: 50px;
+    height: 50px;
+    font-size: 1.3rem;
     color: rgb(255, 255, 255);
-    font-weight: 530;
-    background-color: rgb(255, 80, 0);
+    background-color: rgb(107, 19, 19);
+    cursor: pointer;
+    border: 0.1px solid white;
 }
 
 .completeButton {
-    text-align: center;
-    width: 20%;
-    margin-top: 2%;
-    border: none;
-    padding: 6px;
-    font-size: 14px;
+    position: absolute;
+    top:0;
+    right: 50px;
+    width: 50px;
+    height: 50px;
+    font-size: 1.3rem;
     color: rgb(255, 255, 255);
-    font-weight: 530;
-    background-color: rgb(255, 80, 0);
+    background-color: #153f26;
+    cursor: pointer;
+    border: 0.1px solid white;
 }
 
 .hide {
     display: none;
-    border-radius: 25px;
 }
