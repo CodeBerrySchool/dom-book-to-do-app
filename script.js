@@ -1,19 +1,58 @@
 // Create the todoList function - It should run after a click on  the Add button.
-var App = {
+var app = {
+
+	
+	// Handlers
+
+	//Create the add function
 	addTodo: function() {
-	    var item    = document.getElementById('todoInput').value; // Create a text node from the user input
-	    var text    = document.createTextNode(item); // Create a li tag
-	    var newItem = document.createElement('li');  // Add the user input to the li tag
-	    newItem.appendChild(text); 					 //	Append text to newItem
-		    if (item === '') {						 // Make sure that empty field is not "submittable"
+	    var inputValue    = document.getElementById('todoInput').value; // Store user input in a variable
+	    var text    = document.createTextNode(inputValue);  // Create a text node from the user input
+		var newItem = document.createElement('li');			// Create a li tag from the text node
+		var todoList = document.getElementById('todoList'); // Store the list element in a variable for later
+	
+	    newItem.appendChild(text); 					// Append text to newItem
+		    if (inputValue === '') {				// Make sure that empty field is not "submittable"
 				alert("Valamit be kell írnod!");
 	  	    } else {
-			    document.getElementById('todoList').appendChild(newItem); // Append the li to the html todoList id tag
+			    todoList.appendChild(newItem); // Append the li to the todoList
                 newItem.className = 'newItem'; // Adds a class to the list items
-				document.getElementById('todoInput').value = ''; //Reset empty input field after submit
+				document.getElementById('todoInput').value = ''; // Reset empty input field after submit
+				app.addCompleteButton();
+				app.addRemoveButton();
              }
 	},
 	  
+	// Create the remove function
+	removeTodo: function() {
+        var newItem = this.parentNode;
+		newItem.remove();
+    },
+    
+    // Create the complete function
+	completeTodo: function() {
+        var completedTodo = this.parentNode;
+		completedTodo.classList.toggle('completed');
+	},
+	
+    // Create delete all completed button function
+    removeAllComp: function() {
+        var completedItem = document.querySelectorAll('li.completed');
+		for (i = 0; i < completedItem.length; i++) {
+		  completedItem[i].remove();
+        }
+	},
+
+	// Connect the Enter key to the Add button
+	addOnEnter: function(event) {
+		if (event.keyCode == 13) {
+			event.preventDefault();
+			document.getElementById('add-btn').click();
+		}
+	},
+
+	// Rendering
+
 	// Create the Remove button
 	addRemoveButton: function() {		
         var removeButton = document.createElement('button'); // Creates the button.
@@ -23,8 +62,8 @@ var App = {
 		var i;
 		for (i = 0; i < x.length; i++) {
             x[i].appendChild(removeButton);
-		    removeButton.onclick=App.removeTodo;
-    	}; 
+		    removeButton.onclick=app.removeTodo;
+    	}
 	},
 	
     // Create the Complete button
@@ -36,44 +75,12 @@ var App = {
 		var i;
 		for (i = 0; i < x.length; i++) {
   			x[i].appendChild(completeButton);
-    	    completeButton.onclick=App.completeTodo;
-		};
+    	    completeButton.onclick=app.completeTodo;
+		}
 	},
-
-	// Remove the element when the Remove button is clicked
-	removeTodo: function() {
-        var newItem = this.parentNode;
-		newItem.remove();
-    },
-    
-    // Add complete class to list items
-	completeTodo: function() {
-        var completedTodo = this.parentNode;
-		completedTodo.classList.toggle('completed')
-	
-	},
-	
-    // Complete all completed button functionality
-    removeAllComp: function() {
-        var completedItem = document.querySelectorAll('li.completed')
-		for (i = 0; i < completedItem.length; i++) {
-		  completedItem[i].style.display='none';
-        };
-	},
-
-	// Connect Enter key to Add button
-	addOnEnter: function(event) {
-		if (event.keyCode == 13) {
-			event.preventDefault();
-			document.getElementById('add-btn').click();
-		};
-	},
-};			// the todoList object closing tag is here!
+};
 
 
-// Attach the event listeners
-document.getElementById('add-btn').addEventListener('click', App.addTodo);
-document.getElementById('add-btn').addEventListener('click', App.addRemoveButton);
-document.getElementById('add-btn').addEventListener('click', App.addCompleteButton);
-document.getElementById("remove-all-completed-btn").addEventListener('click', App.removeAllComp);
-document.getElementById('todoInput').addEventListener('keypress', App.addOnEnter);
+// Attach the Enter key press to the add function
+
+document.getElementById('todoInput').addEventListener('keypress', app.addOnEnter);

@@ -9,18 +9,18 @@
 <body>
     <div class="container">
         <form id="todoForm">
-			<h1 class="title">TO-DO LISTA</h1>
-			<div class=todoInputDiv>
-				<input type="text" id="todoInput"  placeholder="Ide írhatod a feladatokat">
-				<button type="button" id="add-btn">Hozzáadás</button>
-			</div>
-			<div>
-			   <button type="button" id="remove-all-completed-btn">Teljesítettek törlése</button>
-			</div>
-		</form>
-		<div class="myList">
-			<ol id="todoList"></ol>
-		</div>
+		    <h1 class="title">TO-DO LISTA</h1>
+		    <div class=todoInputDiv>
+			    <input type="text" id="todoInput"  placeholder="Ide írhatod a feladatokat">
+			    <button type="button" id="add-btn" onclick="app.addTodo()">Hozzáadás</button>
+		    </div>
+		    <div>
+			    <button type="button" id="remove-all-completed-btn" onclick="app.removeAllComp()">Teljesítettek törlése</button>
+		    </div>
+	    </form>
+	    <div class="myList">
+		    <ul id="todoList"></ul>
+	    </div>
     </div>
     <script src="script.js"></script>
 </body>
