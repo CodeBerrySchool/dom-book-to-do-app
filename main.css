@@ -146,7 +146,7 @@ ol, ul {
     grid-column: 2;
 }
 
-.newItem {
+.todo-item {
     display:flex;
     position: relative;
     align-items: center;
