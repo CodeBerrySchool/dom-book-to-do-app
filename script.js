@@ -1,23 +1,28 @@
 var app = {
-	addTodo: function() {
-	    var userInput = document.getElementById('user-input').value;
-	    var todoText = document.createTextNode(userInput);
-		var todoItem = document.createElement('li');
-        todoItem.appendChild(todoText);
 
-		var todoList = document.getElementById('todo-list');
+	todos: [],
 
-        if (userInput === '') {
+	setUpEventListeners: function() {
+		document.getElementById('add-btn').addEventListener('click', this.addTodo);
+		document.getElementById('user-input').addEventListener('keypress', this.addOnEnter);
+		document.getElementById('remove-all-completed-button').addEventListener('click', this.removeAllComp);
+	},
+
+	addtodo: function(userInput) {
+		var input = document.querySelector('.user-input').value;
+        if (input === '') {
             alert("Valamit be kell írnod!");
         } else {
-            todoList.appendChild(todoItem);
-            todoItem.className = 'todo-item';
-            app.addCompleteButton();
-            app.addRemoveButton();
-            /* Reset form field to empty. */
-            document.getElementById('user-input').value = '';
-        }
+			this.todos.push(
+			input
+		  );
+	
+		/* Reset form field to empty. */
+		document.getElementById('user-input').value = '';
+		this.displayList();
+		}
 	},
+
 	removeTodo: function() {
         var todoItem = this.parentNode;
 		todoItem.remove();
@@ -37,7 +42,7 @@ var app = {
         }
 	},
 
-	// Connect the Enter key to the Add button
+// 	// Connect the Enter key to the Add button
 	addOnEnter: function(event) {
 		if (event.keyCode == 13) {
 			event.preventDefault();
@@ -45,7 +50,29 @@ var app = {
 		}
 	},
 
-	// Rendering
+// 	// Rendering
+
+	displayList: function() {
+
+	// Clear the list every time we add a new item - to avoid duplicates
+		var todoList = document.getElementById('todo-list');
+		var todosUl = document.querySelector('ul'); 
+	  	todosUl.innerHTML = ''; // Clear the list so the for loop won't duplicate its contents.
+  
+		for (i=0; i<this.todos.length; i++) {
+	
+		var todoText = document.createTextNode(this.todos[i]);
+		var todoItem = document.createElement('li');
+		todoItem.appendChild(todoText);
+	
+		todoList.appendChild(todoItem);
+		todoItem.className = 'todo-item';
+
+		// add the two buttons to the li
+		app.addCompleteButton();
+		app.addRemoveButton();
+		}
+	},
 
 	// Create the Remove button
 	addRemoveButton: function() {		
@@ -72,9 +99,12 @@ var app = {
     	    completeButton.onclick=app.completeTodo;
 		}
 	},
+
 };
 
+app.setUpEventListeners();
 
-// Attach the Enter key press to the add function
-
-document.getElementById('user-input').addEventListener('keypress', app.addOnEnter);
+// // Attach the event listeners
+// document.getElementById('user-input').addEventListener('keypress', app.addOnEnter());
+// document.getElementById('add-btn').addEventListener('click', app.addTodo());
+// document.getElementById('remove-all-completed-button').addEventListener('click', app.removeAllComp());

@@ -91,19 +91,19 @@ ol, ul {
     padding: 18px;
 }
 
-#todoForm {
+#todo-form {
     grid-row: 2;
     grid-column: 2;
     background-color: #E8DDCB;
     margin-top: 20px;
 }
 
-.todoInputDiv {
+.todo-input-div {
     display:flex;
     padding: 50px 40px 20px 40px;
 }
 
-#todoInput {
+#user-input {
     display:flex;
     justify-content: center;
     text-align: center;
@@ -141,7 +141,7 @@ ol, ul {
 
 /* Set style properties to the list and the list items */
 
-.myList {
+.my-list {
     grid-row: 3;
     grid-column: 2;
 }
