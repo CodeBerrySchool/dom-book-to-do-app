@@ -3,21 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To do list application with JavaScript</title>
-    <link rel = "stylesheet" type = "text/css" href = "main.css" />
+    <title>To-Do Lista App</title>
+    <link rel="stylesheet" href="main.css">
 </head>
 <body>
     <div class="container">
-        <form id="todo-form" class="todo-form">
+        <div id="todo-form" class="todo-form">
 		    <h1 class="title">TO-DO LISTA</h1>
 		    <div class="todo-input-div">
-			    <input type="text" id="user-input" class="user-input" placeholder="Ide írhatod a feladatokat">
-			    <button type="button" id="add-btn" onclick="app.addtodo()">Hozzáadás</button>
+			    <input type="text" id="user-input" placeholder="Ide írhatod a feladatokat">
+			    <button type="button" id="button-add-todo">Hozzáadás</button>
 		    </div>
 		    <div>
-			    <button type="button" id="remove-all-completed-btn" onclick="app.removeAllComp()">Teljesítettek törlése</button>
+			    <button type="button" id="button-remove-all-completed">Teljesítettek
+                    törlése</button>
 		    </div>
-	    </form>
+	    </div>
 	    <div class="my-list">
 		    <ul id="todo-list"></ul>
 	    </div>

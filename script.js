@@ -1,96 +1,75 @@
 var app = {
+    addTodo: function() {
+        var userInput = document.getElementById('user-input').value;
+        var todoText = document.createTextNode(userInput);
+        var todoItem = document.createElement('li');
+        todoItem.appendChild(todoText);
 
-	todos: [],
+        var todoList = document.getElementById('todo-list');
 
-	addtodo: function(userInput) {
-		var input = document.querySelector('.user-input').value;
-        if (input === '') {
+        if (userInput === '') {
             alert("Valamit be kell írnod!");
         } else {
-			this.todos.push(
-			input
-		  );
-		  
-		/* Reset form field to empty. */
-		document.getElementById('user-input').value = '';
-		this.displayList();
-		}
-	},
-
-	removeTodo: function() {
-        var todoItem = this.parentNode;
-		todoItem.remove();
-    },
-    
-    // Create the complete function
-	completeTodo: function() {
-        var completedTodo = this.parentNode;
-		completedTodo.classList.toggle('completed');
-	},
-	
-    // Create delete all completed button function
-    removeAllComp: function() {
-        var completedItem = document.querySelectorAll('li.completed');
-		for (i = 0; i < completedItem.length; i++) {
-		  completedItem[i].remove();
+            todoList.appendChild(todoItem);
+            todoItem.className = 'todo-item';
+            this.renderCompleteButtons();
+            this.renderDeleteButtons();
+            /* Reset form field to empty. */
+            document.getElementById('user-input').value = '';
         }
-	},
-
-// 	// Connect the Enter key to the Add button
-	addOnEnter: function(event) {
-		if (event.keyCode == 13) {
-			event.preventDefault();
-			document.getElementById('add-btn').click();
-		}
-	},
-
-// 	// Rendering
-
-	displayList: function() {
-
-	// Clear the list every time we add a new item - to avoid duplicates
-		var todoList = document.getElementById('todo-list');
-		var todosUl = document.querySelector('ul'); 
-	  	todosUl.innerHTML = ''; // Clear the list so the for loop won't duplicate its contents.
-  
-		for (i=0; i<this.todos.length; i++) {
-	
-		var todoText = document.createTextNode(this.todos[i]);
-		var todoItem = document.createElement('li');
-		todoItem.appendChild(todoText);
-	
-		todoList.appendChild(todoItem);
-		todoItem.className = 'todo-item';
-
-		// add the two buttons to the li
-		app.addCompleteButton();
-		app.addRemoveButton();
-		}
-	},
-
-	// Create the Remove button
-	addRemoveButton: function() {		
-        var removeButton = document.createElement('button'); // Creates the button.
-	    removeButton.textContent = '\u00D7'; // Sets its text.
-	    removeButton.className = 'removeButton'; // Adds a class to it -for later JS.
-		var x = document.getElementsByClassName('todo-item');
-		var i;
-		for (i = 0; i < x.length; i++) {
-            x[i].appendChild(removeButton);
-		    removeButton.onclick=app.removeTodo;
-    	}
-	},
-	
-    // Create the Complete button
-    addCompleteButton: function() {
-		var completeButton = document.createElement('button'); // Creates the button.
-		completeButton.textContent = '\u2713'; // Sets its text.
-		completeButton.className = 'completeButton'; // Adds a class to it.
-		var x = document.getElementsByClassName('todo-item');
-		var i;
-		for (i = 0; i < x.length; i++) {
-  			x[i].appendChild(completeButton);
-    	    completeButton.onclick=app.completeTodo;
-		}
-	},
+    },
+    completeTodo: function(clickedCompleteButton) {
+        var completedTodo = clickedCompleteButton.parentNode;
+        completedTodo.classList.toggle('completed');
+    },
+    deleteTodo: function(clickedDeleteButton) {
+        var todoItem = clickedDeleteButton.parentNode;
+        todoItem.remove();
+    },
+    removeAllCompletedTodos: function() {
+        var completedTodos = document.querySelectorAll('.completed');
+        Array.from(completedTodos).forEach(function(completedTodo) {
+            completedTodo.remove();
+        });
+    },
+    /* Think about emptying the already existing buttons. */
+    /* Think about merging these render functions into one in a later lesson.*/
+    renderCompleteButtons: function() {
+        var completeButton = document.createElement('button');
+        completeButton.textContent = '\u2713';
+        completeButton.className = 'button-complete';
+        var allTodoItems = document.getElementsByClassName('todo-item');
+        Array.from(allTodoItems).forEach(function(todoItem) {
+            todoItem.appendChild(completeButton);
+        });
+    },
+    renderDeleteButtons: function() {
+        var deleteButton = document.createElement('button');
+        deleteButton.textContent = '\u00D7';
+        deleteButton.className = 'button-delete';
+        var allTodoItems = document.getElementsByClassName('todo-item');
+        Array.from(allTodoItems).forEach(function(todoItem) {
+            todoItem.appendChild(deleteButton);
+        });
+    },
+    setupEventListeners: function() {
+        document.addEventListener('click', function(event) {
+            if (event.target.matches('#button-add-todo')) {
+                app.addTodo();
+            } else if (event.target.matches('.button-complete')) {
+                app.completeTodo(event.target);
+            } else if (event.target.matches('.button-delete')) {
+                app.deleteTodo(event.target);
+            } else if (event.target.matches('#button-remove-all-completed')) {
+                app.removeAllCompletedTodos();
+            }
+        });
+        document.getElementById('user-input').addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                app.addTodo();
+            }
+        });
+    }
 };
+
+app.setupEventListeners();

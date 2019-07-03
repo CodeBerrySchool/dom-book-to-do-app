@@ -112,7 +112,7 @@ ol, ul {
     width:70%;
 }
 
-#add-btn {
+#button-add-todo {
     display:flex;
     justify-content: center;
     width: 30%;
@@ -124,7 +124,7 @@ ol, ul {
     cursor: pointer;
 }
 
-#remove-all-completed-btn {
+#button-remove-all-completed {
     margin:auto;
     margin-bottom: 40px;
     margin-top: 20px;
@@ -168,7 +168,7 @@ ul li:nth-child(odd) {
     text-decoration: line-through;
 }
 
-.removeButton {
+.button-delete {
     position: absolute;
     top:0;
     right:0;
@@ -181,7 +181,7 @@ ul li:nth-child(odd) {
     border: 0.1px solid white;
 }
 
-.completeButton {
+.button-complete {
     position: absolute;
     top:0;
     right: 50px;
