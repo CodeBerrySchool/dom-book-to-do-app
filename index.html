@@ -12,14 +12,14 @@
 		    <h1 class="title">TO-DO LISTA</h1>
 		    <div class="todo-input-div">
 			    <input type="text" id="user-input" class="user-input" placeholder="Ide írhatod a feladatokat">
-			    <button type="button" id="add-btn">Hozzáadás</button>
+			    <button type="button" id="add-btn" onclick="app.addtodo()">Hozzáadás</button>
 		    </div>
 		    <div>
-			    <button type="button" id="remove-all-completed-btn" >Teljesítettek törlése</button>
+			    <button type="button" id="remove-all-completed-btn" onclick="app.removeAllComp()">Teljesítettek törlése</button>
 		    </div>
 	    </form>
 	    <div class="my-list">
-		    <ul class="todo-list" id="todo-list"></ul>
+		    <ul id="todo-list"></ul>
 	    </div>
     </div>
     <script src="script.js"></script>

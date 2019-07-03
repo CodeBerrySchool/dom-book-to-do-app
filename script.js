@@ -2,12 +2,6 @@ var app = {
 
 	todos: [],
 
-	setUpEventListeners: function() {
-		document.getElementById('add-btn').addEventListener('click', this.addTodo);
-		document.getElementById('user-input').addEventListener('keypress', this.addOnEnter);
-		document.getElementById('remove-all-completed-button').addEventListener('click', this.removeAllComp);
-	},
-
 	addtodo: function(userInput) {
 		var input = document.querySelector('.user-input').value;
         if (input === '') {
@@ -16,7 +10,7 @@ var app = {
 			this.todos.push(
 			input
 		  );
-	
+		  
 		/* Reset form field to empty. */
 		document.getElementById('user-input').value = '';
 		this.displayList();
@@ -99,12 +93,4 @@ var app = {
     	    completeButton.onclick=app.completeTodo;
 		}
 	},
-
 };
-
-app.setUpEventListeners();
-
-// // Attach the event listeners
-// document.getElementById('user-input').addEventListener('keypress', app.addOnEnter());
-// document.getElementById('add-btn').addEventListener('click', app.addTodo());
-// document.getElementById('remove-all-completed-button').addEventListener('click', app.removeAllComp());
